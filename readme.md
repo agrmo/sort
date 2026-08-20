@@ -2,9 +2,9 @@
 
 Sort algorithms.
 
-## quicksort
+## quicksort-cpp
 
-Serial quicksort in C++.
+Serial recursive quicksort in C++.
 
 ```
 Call [0, -1, 2, -3, 1]
@@ -29,3 +29,8 @@ Combine left [-3]
 Combine right [-1, 0, 1, 2]
 Combined [-3, -1, 0, 1, 2]
 ```
+
+
+## quicksort-py
+
+Serial recursive quicksort in Python.
