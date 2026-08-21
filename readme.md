@@ -4,7 +4,7 @@ Sort algorithms.
 
 ## quicksort-cpp
 
-Serial recursive quicksort in C++.
+Serial recursive quicksort in C++. 
 
 ```
 Call [0, -1, 2, -3, 1]
@@ -30,6 +30,30 @@ Combine right [-1, 0, 1, 2]
 Combined [-3, -1, 0, 1, 2]
 ```
 
+It's also important to handle recursion to a sublist of identical values.
+
+```
+Call [-1, -1, -1, -1, -1, 4, 5, 0]
+Pivot 7 value 0
+Left size 5, right size 3
+Pour left [-1, -1, -1, -1, -1]
+Pour right [4, 5, 0]
+Call [-1, -1, -1, -1, -1]
+Call [4, 5, 0]
+Pivot 1 value 5
+Left size 2, right size 1
+Pour left [4, 0]
+Pour right [5]
+Call [4, 0]
+Size two, return [0, 4]
+Call [5]
+Combine left [0, 4]
+Combine right [5]
+Combined [0, 4, 5]
+Combine left [-1, -1, -1, -1, -1]
+Combine right [0, 4, 5]
+Combined [-1, -1, -1, -1, -1, 0, 4, 5]
+```
 
 ## quicksort-py
 

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <vector>
+#include "vector/Vector.h"
 
 // Pour all numbers into the left and right arrays.
 // Pour any numbers equal to the pivot on the right.
@@ -67,7 +68,19 @@ std::vector<int> quicksort(std::vector<int> list) {
     return list;
   }
 
-  // Else, size is greater than 2. Recurse.
+  // Else, size is greater than 2.
+
+  // The list may be entirely identical.
+
+  // If the list has only one value, then chosing a pivot would
+  // achieve nothing and the recursion would not terminate. If it's
+  // identical, it's sorted, just return it.
+  if (hasonlyonevalue(list)) {
+    return list;
+  }
+
+  // Else, the list size is greater than 2 and has at least two
+  // values, e.g. [-1, -1, 6]. Go ahead and choose a pivot.
   
   int index = rand() % list.size();
   int pivot = list[index];

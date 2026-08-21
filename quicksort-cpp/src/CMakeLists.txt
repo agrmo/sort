@@ -9,7 +9,7 @@ ADD_EXECUTABLE(main)
 TARGET_INCLUDE_DIRECTORIES(main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Add source files.
-SET(dirs print quicksort)
+SET(dirs print quicksort vector timer)
 
 FOREACH(dir ${dirs})
     ADD_SUBDIRECTORY(${dir})
