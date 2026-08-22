@@ -6,6 +6,8 @@
 #include <ctime>
 #include <iostream>
 #include <stdlib.h>
+#include <stdio.h>
+#include <omp.h>
 
 // Make sure to initialize the seed once per main call.
 void exampleone() {

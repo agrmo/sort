@@ -1,8 +1,7 @@
-#include "print/vector/Printvector.h"
 #include "vector/Vector.h"
-#include <iostream>
-#include <stdlib.h>
 #include <vector>
+#include <stdlib.h>
+#include <omp.h>
 
 // Pour all numbers into the left and right arrays.
 // Pour all numbers equal to the pivot on the right.
@@ -47,9 +46,6 @@ int countleft(std::vector<int>* list, int pivot) {
 // Recursive Quicksort.
 void quicksort(std::vector<int>* list) {
 
-  // std::cout << "Call ";
-  // printvector(list);
-
   if (list -> size() <= 1) {
     // Do nothing
     return;
@@ -65,8 +61,6 @@ void quicksort(std::vector<int>* list) {
       list -> at(1) = temp;
     }
 
-    // std::cout << "Size two, return ";
-    // printvector(list);
     return;
   }
 
@@ -86,49 +80,29 @@ void quicksort(std::vector<int>* list) {
   
   int index = rand() % list -> size();
   int pivot = list -> at(index);
-  // std::cout << "Pivot " << index << " value " << pivot << "\n";
 
   int sizeleft = countleft(list, pivot);
   int sizeright = list -> size() - sizeleft;
-  // std::cout << "Left size " << sizeleft << ", right size " << sizeright << "\n";
 
   std::vector<int> left(sizeleft);
   std::vector<int> right(sizeright);
-  
-  // Interestingly we don't need to do any fancy memory cleanup
-  // operations in this implementation. left and right will be deleted
-  // at the end of the function call.
-
   pour(list, &left, &right, pivot);
 
-  // std::cout << "Pour left ";
-  // printvector(left);
-  // std::cout << "Pour right ";
-  // printvector(right);
+#pragma omp parallel sections
+  {
+#pragma omp section
+    
+    quicksort(&left);
 
-  quicksort(&left);
-  quicksort(&right);
+    for (int i = 0; i < left.size(); i++) {
+      list -> at(i) = left.at(i);
+    }
+#pragma omp section
+    
+    quicksort(&right);
 
-  // std::cout << "Combine left ";
-  // printvector(left);
-  // std::cout << "Combine right ";
-  // printvector(right);
-
-  // What's amazing is that we don't need to make a new vector to
-  // combine the two sorted lists. We can just overwrite the original
-  // unsorted list. This solves the very tricky problem of how to pass
-  // a pointer to the recursive function that lasts long enough to be
-  // sorted, but doesn't get deleted from the stack immediately after
-  // the end of the function on the way up.
-
-  for (int i = 0; i < left.size(); i++) {
-    list -> at(i) = left.at(i);
+    for (int i = 0; i < right.size(); i++) {
+      list -> at(i + sizeleft) = right.at(i);
+    }
   }
-
-  for (int i = 0; i < right.size(); i++) {
-    list -> at(i + sizeleft) = right.at(i);
-  }
-
-  // std::cout << "Combined ";
-  // printvector(list);
 }

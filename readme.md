@@ -30,7 +30,7 @@ Combine right [-1, 0, 1, 2]
 Combined [-3, -1, 0, 1, 2]
 ```
 
-It's also important to handle recursion to a sublist of identical values.
+It is also important to handle recursion into a sublist of identical values.
 
 ```
 Call [-1, -1, -1, -1, -1, 4, 5, 0]
@@ -54,6 +54,10 @@ Combine left [-1, -1, -1, -1, -1]
 Combine right [0, 4, 5]
 Combined [-1, -1, -1, -1, -1, 0, 4, 5]
 ```
+
+## quicksort-cpp-openmp
+
+Parallelized recursive quicksort in C++ using OpenMP. This is quite quirky. One must be careful to choose the right amount of parallelism. There are many situations where the execution time is far greater than the serial counterpart.
 
 ## quicksort-py
 
