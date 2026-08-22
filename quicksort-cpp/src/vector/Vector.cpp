@@ -30,17 +30,17 @@ std::vector<int> makerandomvector(int size, int min, int max) {
   return rvector;
 }
 
-bool hasonlyonevalue(std::vector<int>& list) {
+bool hasonlyonevalue(std::vector<int>* list) {
 
-  int firstvalue = list.at(0);
+  int firstvalue = list -> at(0);
 
   // Speed through the list quickly and check if there is more than
   // one value. We don't even need a set to do this. Just set the test
   // value to the first element and check if any of the subsequent
   // elements are different. This is O(n).
 
-  for (int i = 0; i < list.size(); i++) {
-    if (firstvalue != list.at(i)) {
+  for (int i = 0; i < list -> size(); i++) {
+    if (firstvalue != list -> at(i)) {
       return false;
     }
   }

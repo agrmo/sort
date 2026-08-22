@@ -15,6 +15,6 @@
 // This makes things a bit more expensive but there isn't a way to
 // chop up the array if the pivot achieves nothing on a list of
 // identical numbers.
-std::vector<int> quicksort(std::vector<int> list);
+void quicksort(std::vector<int>* list);
 
 #endif

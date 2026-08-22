@@ -14,6 +14,6 @@ void fillvector(std::vector<int>* vector, int val);
 std::vector<int> makerandomvector(int size, int min, int max);
 
 // Is the vector a list of only one value?
-bool hasonlyonevalue(std::vector<int>& list);
+bool hasonlyonevalue(std::vector<int>* list);
 
 #endif

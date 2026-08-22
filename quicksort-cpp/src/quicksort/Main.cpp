@@ -10,27 +10,27 @@
 // Make sure to initialize the seed once per main call.
 void exampleone() {
   std::vector<int> list = {0, -1, 2, -3, 1};
-  std::vector<int> sorted = quicksort(list);
+  quicksort(&list);
 }
 
 // What if the sublist is identical and the pivot achieves nothing?
 void exampletwo() {
   std::vector<int> list = {-1, -1, -1, -1, -1, 4, 5, 0};
-  std::vector<int> sorted = quicksort(list);
+  quicksort(&list);
 }
 
 // Simple Quicksort with a timer.
 void examplethree() {
   srand(time(NULL));
-  std::vector<int> unsorted = makerandomvector(10, -5, 5);
-  printvector(unsorted);
+  std::vector<int> list = makerandomvector(15, -5, 5);
+  printvector(list);
   Timer t;
   t.start();
-  std::vector<int> sorted = quicksort(unsorted);
+  quicksort(&list);
   t.stop();
   printtimerms(&t);
 }
 
 int main() {
-  exampletwo();
+  examplethree();
 }
